@@ -1,0 +1,32 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h1 class="text-center">Authors</h1>
+<a href="/">Home</a>
+<table class="table table-warning table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">prename</th>
+      <th scope="col">Name</th>
+      <th scope="col">written books</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for author in authors %}
+    <tr>
+      <th scope="row">{{ author.key }}</th>
+      <td>{{ author.name }}</td>
+      <td>{{ author.prename }}</td>
+      <td>
+        {% for book in books %}
+          {% if book.authorId == author.key %}
+            {{ book.title }}
+          {% endif %}
+        {% endfor %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
