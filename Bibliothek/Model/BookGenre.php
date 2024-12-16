@@ -50,4 +50,20 @@ class BookGenre {
         $bookGenre->genreId = $tmpBookGenre["genreId"];
         return $bookGenre;
     }
+
+    public function save() {
+        $gateway = new BookGenreGateway();
+        if($this->bookGenreKey > 0){
+            $gateway->update($this->bookGenreKey, $this->getAttributesAsAsiArray());
+        } else {
+            $this->bookGenreKey = $gateway->insert($this->getAttributesAsAsiArray());
+        }
+    }
+
+    private function getAttributesAsAsiArray() : array {
+        return [
+            "bookId"=> $this->bookId,
+            "genreId"=> $this->genreId
+        ];
+    }
 }

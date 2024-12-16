@@ -16,35 +16,35 @@ class Book {
         return $this->bookKey;
     }
 
-    public function settitle(string $title): void {
+    public function setTitle(string $title): void {
         $this->bookTitle = $title;
     }
 
-    public function gettitle(): string {
+    public function getTitle(): string {
         return $this->bookTitle;
     }
 
-    public function setauthorid(int $authorId): void {
+    public function setAuthorid(int $authorId): void {
         $this->authorId = $authorId;
     }
 
-    public function getauthorid(): int {
+    public function getAuthorid(): int {
         return $this->authorId;
     }
 
-    public function settypeid(int $typeId): void {
+    public function setTypeid(int $typeId): void {
         $this->typeId = $typeId;
     }
 
-    public function gettypeid(): int {
+    public function getTypeid(): int {
         return $this->typeId;
     }
 
-    public function setpages(int $pages): void {
+    public function setPages(int $pages): void {
         $this->bookPages = $pages;
     }
 
-    public function getpages(): int {
+    public function getPages(): int {
         return $this->bookPages;
     }
 
@@ -71,7 +71,7 @@ class Book {
         $book->bookPages = $tmpBook["bookPages"];
         return $book;
     }
-/*
+
     public function save() {
         $gateway = new BookGateway();
         if($this->bookKey > 0){
@@ -85,21 +85,9 @@ class Book {
         return [
             "bookTitle"=> $this->bookTitle,
             "authorId"=> $this->authorId,
-            "typeId"=> $this->typeId,
-            "bookPages"=> $this->bookPages
+            "typeID"=> $this->typeId,
+            "bookPages" => $this->bookPages
         ];
     }
-
-    public static function findByKey(int $key): ?Book {
-        $gateway = new BookGateway();
-
-        $tmpBook = $gateway->findById($key);
-        $book = null;
-
-        if( $tmpBook ) {
-            $book = self::create($tmpBook);
-        }
-        return $book;
-    } */
 
 }

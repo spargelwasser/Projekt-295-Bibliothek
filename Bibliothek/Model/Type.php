@@ -41,4 +41,19 @@ class Type {
         $type->typeName = $tmpType["typeName"];
         return $type;
     }
+
+    public function save() {
+        $gateway = new TypeGateway();
+        if($this->typeKey > 0){
+            $gateway->update($this->typeKey, $this->getAttributesAsAsiArray());
+        } else {
+            $this->typeKey = $gateway->insert($this->getAttributesAsAsiArray());
+        }
+    }
+
+    private function getAttributesAsAsiArray() : array {
+        return [
+            "typeName"=> $this->typeName
+        ];
+    }
 }

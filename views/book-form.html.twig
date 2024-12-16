@@ -2,4 +2,40 @@
 
 {% block content %}
 <a href="/">Home</a>
+
+<form action="{% if book %}/book/{{ book.key }} {% else %}/add/book{% endif %}" method="post">
+        {% if book %}
+            <input type="hidden" id="_method" name="_method" value="PUT">
+        {% endif %}
+        <h1>Book</h1>
+        <div class="mb-3 row">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ book.title }}">
+        </div>
+        <select class="form-select form-select-md mb-3" aria-label="Large select example" name="author">
+        <option selected>Select Author</option>
+            {% for author in authors %}
+                <option value="{{ author.key }}">{{ author.Prename }} {{ author.Name }}</option>
+            {% endfor %}
+        </select>
+        <select class="form-select form-select-md mb-3" aria-label="Large select example" name="type">
+        <option selected>Select Type</option>
+            {% for type in types %}
+                <option value="{{ type.key }}">{{ type.name }}</option>
+            {% endfor %}
+        </select>
+        <div class="mb-3 row">
+            <label for="pages" class="form-label">Pages</label>
+            <input type="number" class="form-control" name="pages" value="{{ book.pages }}">
+        </div>
+        {% for genre in genres %}
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{ genre.key }}" name="genres[]">
+            <label class="form-check-label" for="flexCheckDefault">
+                {{ genre.name }}
+            </label>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 {% endblock %}

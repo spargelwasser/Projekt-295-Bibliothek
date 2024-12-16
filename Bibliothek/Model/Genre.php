@@ -41,4 +41,19 @@ class Genre {
         $genre->genreName = $tmpGenre["genreName"];
         return $genre;
     }
+
+    public function save() {
+        $gateway = new GenreGateway();
+        if($this->genreKey > 0){
+            $gateway->update($this->genreKey, $this->getAttributesAsAsiArray());
+        } else {
+            $this->genreKey = $gateway->insert($this->getAttributesAsAsiArray());
+        }
+    }
+
+    private function getAttributesAsAsiArray() : array {
+        return [
+            "genreName"=> $this->genreName
+        ];
+    }
 }
