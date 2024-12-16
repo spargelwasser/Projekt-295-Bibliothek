@@ -2,4 +2,20 @@
 
 {% block content %}
 <a href="/">Home</a>
+
+<form action="{% if author %}/author/{{ author.key }} {% else %}/add/author{% endif %}" method="post">
+        {% if book %}
+            <input type="hidden" id="_method" name="_method" value="PUT">
+        {% endif %}
+        <h1>Author</h1>
+        <div class="mb-3 row">
+            <label for="prename" class="form-label">Prename</label>
+            <input type="text" class="form-control" id="prename" name="prename" value="{{ author.prename }}">
+        </div>
+        <div class="mb-3 row">
+            <label for="name" class="form-label">name</label>
+            <input type="text" class="form-control" name="name" value="{{ author.name }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 {% endblock %}

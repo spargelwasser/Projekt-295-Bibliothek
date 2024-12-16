@@ -21,7 +21,7 @@ class Author {
         return $this->authorName;
     }
     public function setPrename(string $prename): void {
-        $this->authorName = $prename;
+        $this->authorPrename = $prename;
     }
 
     public function getPrename(): string {
@@ -48,5 +48,21 @@ class Author {
         $author->authorName = $tmpAuthor["authorName"];
         $author->authorPrename = $tmpAuthor["authorPrename"];
         return $author; 
+    }
+
+    public function save() {
+        $gateway = new AuthorGateway();
+        if($this->authorKey > 0){
+            $gateway->update($this->authorKey, $this->getAttributesAsAsiArray());
+        } else {
+            $this->authorKey = $gateway->insert($this->getAttributesAsAsiArray());
+        }
+    }
+
+    private function getAttributesAsAsiArray() : array {
+        return [
+            "authorPrename"=> $this->authorPrename,
+            "authorName"=> $this->authorName
+        ];
     }
 }

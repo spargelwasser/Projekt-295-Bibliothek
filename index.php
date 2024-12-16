@@ -1,6 +1,6 @@
 <?php
 
-use Bibliothek\Controller\AddUpdateController;
+use Bibliothek\Controller\AddController;
 use Bibliothek\Controller\BookController;
 use Bibliothek\Controller\AuthorController;
 use Bibliothek\Controller\HomeController;
@@ -29,31 +29,37 @@ if($uri === "/authors"){
 }
 
 if($uri === "/add"){
-    $controller = new AddUpdateController();
-    $controller->indexAdd();
-    die();
-}
-
-if($uri === "/update"){
-    $controller = new AddUpdateController();
-    $controller->indexUpdate();
+    $controller = new AddController();
+    $controller->index();
     die();
 }
 
 if($uri === "/add/author"){
-    $controller = new AddUpdateController();
-    $controller->indexAuthor();
+    $controller = new AddController();
+    if($httpMethod === "GET") {
+        $controller->addAuthor();
+    } elseif ($httpMethod === "POST") {
+        $controller->storeauthor($_POST);
+    }
     die();
 }
 
 if($uri === "/add/book"){
-    $controller = new AddUpdateController();
-    $controller->indexBook();
+    $controller = new AddController();
+    $controller->addBook();
     die();
 }
 
 if($uri === "/add/genre"){
-    $controller = new AddUpdateController();
-    $controller->indexGenre();
+    $controller = new AddController();
+    $controller->addGenre();
     die();
 }
+
+if($uri === "/add/type"){
+    $controller = new AddController();
+    $controller->addType();
+    die();
+}
+
+echo "page not Found";
