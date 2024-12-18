@@ -1,7 +1,6 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<a href="/">Home</a>
 
 <form action="{% if book %}/update/book/{{ book.key }} {% else %}/add/book{% endif %}" method="post">
         {% if book %}

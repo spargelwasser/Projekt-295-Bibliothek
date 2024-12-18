@@ -1,7 +1,6 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<a href="/">Home</a>
 
 <form action="{% if genre %}/update/genre/{{ genre.key }} {% else %}/add/genre{% endif %}" method="post">
         {% if genre %}
