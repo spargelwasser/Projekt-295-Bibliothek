@@ -1,0 +1,32 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h1 class="text-center">Types</h1>
+<a href="/">Home</a>
+<table class="table table-warning table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for type in types %}
+    <tr>
+      <th scope="row">{{ type.key }}</th>
+      <td>{{ type.name }}</td>
+      <td><a href="/update/type/{{ type.key }}" class="btn btn-warning">Edit</a></td>
+      <td>
+        <form method="POST" action="/update/type/{{ type.key }}">
+          <input type="hidden" name="_method" id="_method" value="DELETE">
+          <button class="btn btn-danger">Delete</buton>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div>Warning! On deleting a type, all books with this type will be deleted too.</div>
+{% endblock %}

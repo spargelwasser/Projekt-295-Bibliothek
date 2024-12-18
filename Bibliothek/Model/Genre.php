@@ -56,4 +56,21 @@ class Genre {
             "genreName"=> $this->genreName
         ];
     }
+
+    public static function findById(int $id): ?Genre {
+        $gateway = new GenreGateway();
+
+        $tmpGenre = $gateway->findById($id);
+        $genre = null;
+
+        if( $tmpGenre ) {
+            $genre = self::create($tmpGenre);
+        }
+        return $genre;
+    }
+
+    public function delete() {
+        $gateway = new GenreGateway();
+        $gateway->delete($this->genreKey);
+    }
 }

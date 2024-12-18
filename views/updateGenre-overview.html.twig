@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h1 class="text-center">Genres</h1>
+<a href="/">Home</a>
+<table class="table table-warning table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for genre in genres %}
+    <tr>
+      <th scope="row">{{ genre.key }}</th>
+      <td>{{ genre.name }}</td>
+      <td><a href="/update/genre/{{ genre.key }}" class="btn btn-warning">Edit</a></td>
+      <td>
+        <form method="POST" action="/update/genre/{{ genre.key }}">
+          <input type="hidden" name="_method" id="_method" value="DELETE">
+          <button class="btn btn-danger">Delete</buton>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

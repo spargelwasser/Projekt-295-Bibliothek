@@ -65,4 +65,21 @@ class Author {
             "authorName"=> $this->authorName
         ];
     }
+
+    public static function findById(int $id): ?Author {
+        $gateway = new AuthorGateway();
+
+        $tmpAuthor = $gateway->findById($id);
+        $author = null;
+
+        if( $tmpAuthor ) {
+            $author = self::create($tmpAuthor);
+        }
+        return $author;
+    }
+
+    public function delete() {
+        $gateway = new AuthorGateway();
+        $gateway->delete($this->authorKey);
+    }
 }

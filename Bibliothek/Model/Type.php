@@ -56,4 +56,21 @@ class Type {
             "typeName"=> $this->typeName
         ];
     }
+
+    public static function findById(int $id): ?Type {
+        $gateway = new TypeGateway();
+
+        $tmpType = $gateway->findById($id);
+        $type = null;
+
+        if( $tmpType ) {
+            $type = self::create($tmpType);
+        }
+        return $type;
+    }
+
+    public function delete() {
+        $gateway = new TypeGateway();
+        $gateway->delete($this->typeKey);
+    }
 }

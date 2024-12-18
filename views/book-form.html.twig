@@ -3,7 +3,7 @@
 {% block content %}
 <a href="/">Home</a>
 
-<form action="{% if book %}/book/{{ book.key }} {% else %}/add/book{% endif %}" method="post">
+<form action="{% if book %}/update/book/{{ book.key }} {% else %}/add/book{% endif %}" method="post">
         {% if book %}
             <input type="hidden" id="_method" name="_method" value="PUT">
         {% endif %}
@@ -13,15 +13,15 @@
             <input type="text" class="form-control" id="title" name="title" value="{{ book.title }}">
         </div>
         <select class="form-select form-select-md mb-3" aria-label="Large select example" name="author">
-        <option selected>Select Author</option>
+        <option value="" disabled>Select Author</option>
             {% for author in authors %}
-                <option value="{{ author.key }}">{{ author.Prename }} {{ author.Name }}</option>
+                <option value="{{ author.key }}" {% if book.authorId == author.key %}selected{% endif %}>{{ author.Prename }} {{ author.Name }}</option>
             {% endfor %}
         </select>
         <select class="form-select form-select-md mb-3" aria-label="Large select example" name="type">
-        <option selected>Select Type</option>
+        <option value="" disabled>Select Author</option>
             {% for type in types %}
-                <option value="{{ type.key }}">{{ type.name }}</option>
+                <option value="{{ type.key }}" {% if book.typeId == type.key %}selected{% endif %}>{{ type.name }}</option>
             {% endfor %}
         </select>
         <div class="mb-3 row">
@@ -30,7 +30,7 @@
         </div>
         {% for genre in genres %}
             <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="{{ genre.key }}" name="genres[]">
+            <input class="form-check-input" type="checkbox" value="{{ genre.key }}" name="genres[]" {% for bookgenre in bookgenres %} {% if genre.key == bookgenre.genreId and book.key == bookgenre.bookId %}checked{% endif %} {% endfor %} >
             <label class="form-check-label" for="flexCheckDefault">
                 {{ genre.name }}
             </label>

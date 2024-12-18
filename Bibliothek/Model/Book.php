@@ -90,4 +90,21 @@ class Book {
         ];
     }
 
+    public static function findById(int $id): ?Book {
+        $gateway = new BookGateway();
+
+        $tmpBook = $gateway->findById($id);
+        $book = null;
+
+        if( $tmpBook ) {
+            $book = self::create($tmpBook);
+        }
+        return $book;
+    }
+
+    public function delete() {
+        $gateway = new BookGateway();
+        $gateway->delete($this->bookKey);
+    }
+
 }

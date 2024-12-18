@@ -3,8 +3,9 @@
 {% block content %}
 <a href="/">Home</a>
 
-<form action="{% if author %}/author/{{ author.key }} {% else %}/add/author{% endif %}" method="post">
-        {% if book %}
+<form action="{% if author %}/update/author/{{ author.key }} {% else %}/add/author{% endif %}" method="post">
+        {% if author %}
+        
             <input type="hidden" id="_method" name="_method" value="PUT">
         {% endif %}
         <h1>Author</h1>

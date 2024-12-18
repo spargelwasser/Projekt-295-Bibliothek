@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h1 class="text-center">Authors</h1>
+<a href="/">Home</a>
+<table class="table table-warning table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <th scope="row">{{ book.key }}</th>
+      <td>{{ book.title }}</td>
+      <td><a href="/update/book/{{ book.key }}" class="btn btn-warning">Edit</a></td>
+      <td>
+        <form method="POST" action="/update/book/{{ book.key }}">
+          <input type="hidden" name="_method" id="_method" value="DELETE">
+          <button class="btn btn-danger">Delete</buton>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

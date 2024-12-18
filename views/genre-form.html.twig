@@ -3,8 +3,8 @@
 {% block content %}
 <a href="/">Home</a>
 
-<form action="{% if genre %}/genre/{{ genre.key }} {% else %}/add/genre{% endif %}" method="post">
-        {% if book %}
+<form action="{% if genre %}/update/genre/{{ genre.key }} {% else %}/add/genre{% endif %}" method="post">
+        {% if genre %}
             <input type="hidden" id="_method" name="_method" value="PUT">
         {% endif %}
         <h1>Genre</h1>

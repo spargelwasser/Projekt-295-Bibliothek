@@ -66,4 +66,10 @@ class BookGenre {
             "genreId"=> $this->genreId
         ];
     }
+
+    public function delete() {
+        $gateway = new BookGenreGateway();
+        $gateway->delete($this->bookGenreKey);
+    }
+
 }
