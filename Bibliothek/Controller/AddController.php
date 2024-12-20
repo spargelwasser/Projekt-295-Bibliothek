@@ -15,29 +15,9 @@ class AddController extends DefaultController{
         ]);
     }
 
+    //Author
     public function addAuthor() {
         $this->render("author-form.html.twig", [
-        ]);
-    }
-
-    public function addBook() {
-        $authors = Author::all();
-        $types = Type::all();
-        $genres = Genre::all();
-        $this->render("book-form.html.twig", [
-            "authors" => $authors,
-            "types" => $types,
-            "genres" => $genres
-        ]);
-    }
-
-    public function addGenre() {
-        $this->render("genre-form.html.twig", [
-        ]);
-    }
-
-    public function addType() {
-        $this->render("type-form.html.twig", [
         ]);
     }
 
@@ -48,6 +28,19 @@ class AddController extends DefaultController{
         $author->save();
 
         $this->redirect("/");
+    }
+
+
+    // Book
+    public function addBook() {
+        $authors = Author::all();
+        $types = Type::all();
+        $genres = Genre::all();
+        $this->render("book-form.html.twig", [
+            "authors" => $authors,
+            "types" => $types,
+            "genres" => $genres
+        ]);
     }
 
     public function storeBook( array $data) {
@@ -71,16 +64,14 @@ class AddController extends DefaultController{
         }
     }
         
-
         $this->redirect("/");
     }
 
-    public function storeType( array $data) {
-        $type = new Type();
-        $type->setName($data["name"]);
-        $type->save();
 
-        $this->redirect("/");
+    // Genre
+    public function addGenre() {
+        $this->render("genre-form.html.twig", [
+        ]);
     }
 
     public function storeGenre( array $data) {
@@ -91,4 +82,18 @@ class AddController extends DefaultController{
         $this->redirect("/");
     }
 
-}
+    // Type
+    public function addType() {
+        $this->render("type-form.html.twig", [
+        ]);
+    }
+
+    public function storeType( array $data) {
+        $type = new Type();
+        $type->setName($data["name"]);
+        $type->save();
+
+        $this->redirect("/");
+    }
+    
+}  

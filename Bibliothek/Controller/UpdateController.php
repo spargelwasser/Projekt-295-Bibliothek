@@ -16,6 +16,8 @@ class UpdateController extends DefaultController{
         ]);
     }
 
+
+    // author
     public function showAuthors() {
         $authors = Author::all();
         
@@ -46,6 +48,8 @@ class UpdateController extends DefaultController{
         $this->redirect("/update/author");
     }
 
+
+    // types
     public function showTypes() {
         $types = Type::all();
         
@@ -75,6 +79,8 @@ class UpdateController extends DefaultController{
         $this->redirect("/update/type");
     }
 
+
+    // genres
     public function showGenres() {
         $genre = Genre::all();
         
@@ -104,6 +110,7 @@ class UpdateController extends DefaultController{
         $this->redirect("/update/genre");
     }
 
+    // books
     public function showBooks() {
         $books = Book::all();
         
